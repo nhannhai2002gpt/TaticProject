@@ -1,0 +1,45 @@
+# Build directories - Không track build outputs
+build/
+build_vs/
+build_offline/
+Debug/
+Release/
+x64/
+x86/
+
+# Visual Studio files - IGNORE
+.vs/
+*.vcxproj.user
+*.vcxproj.filters
+*.sln.DotSettings
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+*.ini
+
+# Temporary files
+*.tmp
+*.log
+
+# C++ build artifacts
+*.lib
+*.exe
+*.dll
+*.o
+*.a
+*.so
+
+# Binaries
+bin/
+obj/
+
+# CMake
+CMakePresets.json

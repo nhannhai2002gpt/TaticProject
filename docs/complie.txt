@@ -1,0 +1,58 @@
+cmake -B build -S . ^
+  -DCMAKE_TOOLCHAIN_FILE=C:/Users/GIGABYTE/vcpkg/scripts/buildsystems/vcpkg.cmake ^
+  -DCMAKE_PREFIX_PATH=C:/Qt/6.9.1/msvc2022_64 ^
+  -DCMAKE_CXX_STANDARD=20 ^
+  -DCMAKE_BUILD_TYPE=Release
+
+
+
+  cmake --build build --config Release
+
+
+
+
+  {
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "x64-windows-vcpkg",
+      "generator": "Ninja",
+      "description": "Build NaviProject with vcpkg toolchain and external Qt",
+      "binaryDir": "${sourceDir}/build/vcpkg",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "C:/Users/GIGABYTE/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_PREFIX_PATH": "C:/Qt/6.9.1/msvc2022_64",
+        "CMAKE_CXX_STANDARD": "20",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "hidden": true,
+      "name": "Qt",
+      "cacheVariables": {
+        "CMAKE_PREFIX_PATH": "$env{QTDIR}"
+      },
+      "vendor": {
+        "qt-project.org/Qt": {
+          "checksum": "wVa86FgEkvdCTVp1/nxvrkaemJc="
+        }
+      }
+    }
+  ],
+  "vendor": {
+    "qt-project.org/Presets": {
+      "checksum": "WydqNp+X2EpcTBseVFauX9AvBMs="
+    }
+  }
+}
+
+cmake --build build/vcpkg
+
+cmake --preset x64-windows-vcpkg
+cmake --build build/vcpkg --config Release
+
+Remove-Item -Recurse -Force build\vcpkg
+cmake --preset x64-windows-vcpkg
+cmake --build build/vcpkg --target NaviServer --config Release
+cmake --build build/vcpkg --target NaviClient --config Release
